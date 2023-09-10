@@ -1,11 +1,24 @@
-import express from 'express'
+import express from "express";
+import routes from "../routes";
+import { Mongo } from "../database/mongo";
+import { config } from "dotenv";
 
-const app = express()
+const main = async () => {
+  config();
 
-app.use(express.json())
+  const port = process.env.PORT || 3000;
 
+  const app = express();
 
+  await Mongo.connect();
 
-app.listen(3000, () => {
-    console.log('App listening at http://localhost:3000')
-})
+  app.use(express.json());
+
+  routes(app);
+
+  app.listen(port, () => {
+    console.log(`App listening at ${port}`);
+  });
+};
+
+main();

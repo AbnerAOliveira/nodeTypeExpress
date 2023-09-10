@@ -1,11 +1,11 @@
 import { IUserController, IUserRepository } from "../models/user.model";
 
-export class UsersController implements IUserController {
-  constructor(private readonly UserRepository: IUserRepository) {}
+export class UserController implements IUserController {
+  constructor(private readonly userRepository: IUserRepository) {}
 
   async handle() {
     try {
-      const users = await this.UserRepository.getUsers();
+      const users = await this.userRepository.getUsers();
       return {
         statusCode: 200,
         body: users,
