@@ -3,7 +3,7 @@ import { IUserController, IUserRepository } from "../models/user.model";
 export class UserController implements IUserController {
   constructor(private readonly userRepository: IUserRepository) {}
 
-  async handle() {
+  async get() {
     try {
       const users = await this.userRepository.getUsers();
       return {

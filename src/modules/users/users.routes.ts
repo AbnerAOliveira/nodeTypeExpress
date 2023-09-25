@@ -8,7 +8,7 @@ userRoutes.get("/", async (req: Request, res: Response) => {
   const mongoUserRepository = new MongoUserRepository();
   const userController = new UserController(mongoUserRepository);
 
-  const { statusCode, body } = await userController.handle();
+  const { statusCode, body } = await userController.get();
 
   return res.send(body).status(statusCode);
 });
