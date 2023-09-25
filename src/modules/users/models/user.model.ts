@@ -1,13 +1,17 @@
 import { ObjectId } from "mongodb";
-import { IHttpReponse } from "../../../utils/httpResponse.interface";
+import {
+  IHttpReponse,
+  IHttpRequest,
+} from "../../../utils/httpProtocols.interface";
 
 export interface IUserController {
   get(): Promise<IHttpReponse<IUser[]>>;
+  create(params: IHttpRequest<ICreateUserParams>): Promise<IHttpReponse<IUser>>;
 }
 
 export interface IUserRepository {
   getUsers(): Promise<IUser[]>;
-  createUser(params: ICreateUserParams): Promise<IUser>;
+  createUser(httpRequest: ICreateUserParams): Promise<IUser>;
 }
 
 export interface IUser {

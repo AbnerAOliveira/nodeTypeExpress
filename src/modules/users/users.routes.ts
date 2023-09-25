@@ -13,4 +13,13 @@ userRoutes.get("/", async (req: Request, res: Response) => {
   return res.send(body).status(statusCode);
 });
 
+userRoutes.post("/", async (req: Request, res: Response) => {
+  const mongoUserRepository = new MongoUserRepository();
+  const userController = new UserController(mongoUserRepository);
+
+  const { statusCode, body } = await userController.create({ body: req.body });
+
+  return res.send(body).status(statusCode);
+});
+
 export default userRoutes;
