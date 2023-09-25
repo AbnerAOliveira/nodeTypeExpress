@@ -1,7 +1,8 @@
 import express from "express";
-import routes from "../routes";
+//import routes from "../routes";
 import { Mongo } from "../database/mongo";
 import { config } from "dotenv";
+import userRoutes from "./modules/users/users.routes";
 
 const main = async () => {
   config();
@@ -10,7 +11,8 @@ const main = async () => {
 
   await Mongo.connect();
 
-  routes(app);
+  //routes(app);
+  app.use("/users", userRoutes);
 
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
